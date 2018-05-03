@@ -1142,7 +1142,7 @@ class HLSVideoTest(VideoBaseTest):
         self.navigate_to_video()
 
         self.video.click_player_button('play')
-        self.assertEqual(self.video.state, 'playing')
+        self.assertIn(self.video.state, ['buffering', 'playing'])
         self.video.click_player_button('pause')
         self.assertEqual(self.video.state, 'pause')
 
