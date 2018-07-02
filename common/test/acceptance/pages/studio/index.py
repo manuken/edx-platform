@@ -290,6 +290,27 @@ class DashboardPage(PageObject, HelpMixin):
         )
         return self.q(css='#settings-language-value')
 
+    @property
+    def error_text_length(self):
+        """
+        Returns the error text length
+        """
+        self.wait_for_element_visibility(
+            '#course_creation_error>p',
+            'Length error is present'
+        )
+        return self.q(css='#course_creation_error>p').text[0]
+
+    def is_create_button_disabled(self):
+        """
+        Returns: True if Create button is disbaled
+        """
+        self.wait_for_element_presence(
+            '.action.action-primary.new-course-save.is-disabled',
+            "Create button is disabled"
+        )
+        return True
+
 
 class HomePage(DashboardPage):
     """
