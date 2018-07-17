@@ -404,6 +404,14 @@ class CourseEntitlement(TimeStampedModel):
             return cls.enroll_user_and_fulfill_entitlement(entitlement, course_run_key)
         return False
 
+    @classmethod
+    def unenroll_entitlement(cls, course_enrollment):
+        """"""
+        course_uuid = get_course_uuid_for_course(course_enrollment.course_id)
+        course_entitlement = cls.get_entitlement_if_active(course_enrollment.user, course_uuid)
+        if course_entitlement:
+            course_entitlement.set_enrollment(None)
+
 
 class CourseEntitlementSupportDetail(TimeStampedModel):
     """

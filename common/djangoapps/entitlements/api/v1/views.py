@@ -42,7 +42,6 @@ def _unenroll_entitlement(course_entitlement, course_run_key):
     Internal method to handle the details of Unenrolling a User in a Course Run.
     """
     CourseEnrollment.unenroll(course_entitlement.user, course_run_key, skip_refund=True)
-    course_entitlement.set_enrollment(None)
 
 
 @transaction.atomic
